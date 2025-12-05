@@ -1,6 +1,10 @@
-﻿using System.Net.Http.Headers;
+﻿
+using System.Net.Http.Headers;
 using System.Reflection.Metadata.Ecma335;
+Console.WriteLine("Tere kasutaja, palun sisesta kasutaja nimi");
 
+
+Console.WriteLine("Sinu kõihe lemmikuim on: " + lemmikloomad[valik - 1]);
 namespace Eelarve_Arvutaja
 {
     internal class Program
@@ -19,13 +23,18 @@ namespace Eelarve_Arvutaja
             List<float> tulud = VõtaKasutajaltMituSisenditJärjest();
             List<float> kulud = VõtaKasutajaltMituSisenditJärjest();
 
-            float kokku = 0;
-            kokku = ArvutaKokku(tulud, kokku);
+            float tuludkokku = 0;
+            tuludkokku = ArvutaKokku(tulud);
+            float kuludkokku = ArvutaKokku(kulud);
 
+
+            float kooku = (float)Math.Round((tuludkokku - kuludkokku),2);
+            Console.WriteLine($"Kasutaja: {kasutajaNimi}, teie kontoseis on: {kokku}");
         }
 
-        private static float ArvutaKokku(List<float> tulud, float kokku)
+        private static float ArvutaKokku(List<float> tulud)
         {
+            float kokku = 0;
             for (int i = 0; i < tulud.Count; i++)
             {
                 kokku += tulud[i];
